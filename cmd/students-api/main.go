@@ -5,6 +5,7 @@ import (
 	"net/http"
 
 	"github.com/sandipan/students-api/internal/config"
+	student "github.com/sandipan/students-api/internal/http/handlers"
 )
 
 func main() {
@@ -14,9 +15,9 @@ func main() {
 	// setup routes
 	router := http.NewServeMux()
 
-	router.HandleFunc("GET /", func(w http.ResponseWriter, r *http.Request) {
-		w.Write([]byte("Welcome to students api"))
-	})
+	router.HandleFunc("POST /v1/api/students", student.New())
+
+	
 	// setup server
 	server := http.Server {
 		Addr: cfg.Address,
